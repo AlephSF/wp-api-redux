@@ -63,13 +63,26 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-wp-api-redux.php';
  * Since everything within the plugin is registered via hooks,
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
+ * Wrapped in a plugins_loaded hook because we need to make sure
+ * the REST API is active and the classes are active to be extended.
  *
  * @since    1.0.0
  */
+
+add_action('plugins_loaded', 'run_wp_api_redux');
+
 function run_wp_api_redux() {
-
-	$plugin = new Wp_Api_Redux();
-	$plugin->run();
-
+  if ( class_exists('WP_REST_Controller') ) {
+		$plugin = new Wp_Api_Redux();
+		$plugin->run();
+	} else {
+    add_action('admin_notices', 'wp_api_redux_not_loaded');
+  }
 }
-run_wp_api_redux();
+
+function wp_api_redux_not_loaded() {
+    printf(
+      '<div class="error"><p>%s</p></div>',
+      __('WordPress API Redux cannot load because the REST API is not currently active.')
+    );
+}
