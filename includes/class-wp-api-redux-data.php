@@ -73,9 +73,9 @@ class Wp_Api_Redux_Data {
 
 		$this->load_dependencies();
 		$this->set_locale();
-		$this->define_admin_hooks();
-		$this->define_public_hooks();
-
+		// $this->define_admin_hooks();
+		// $this->define_public_hooks();
+		$this->define_custom_endpoints();
 	}
 
 	/**
@@ -111,13 +111,19 @@ class Wp_Api_Redux_Data {
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-api-redux-data-admin.php';
+		// require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-api-redux-data-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp-api-redux-data-public.php';
+		// require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp-api-redux-data-public.php';
+
+		/**
+		 * Here be the custom endpoints
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/endpoints/class-wp-api-redux-data-site.php';
+
 
 		$this->loader = new Wp_Api_Redux_Data_Loader();
 
@@ -169,6 +175,19 @@ class Wp_Api_Redux_Data {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+
+	}
+
+	/**
+	 * Define custom endpoints
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_custom_endpoints() {
+
+		$site_endpoint = new Wp_Api_Redux_Data_Site( $this->get_plugin_name(), $this->get_version() );
+		$this->loader->add_action( 'rest_api_init', $site_endpoint, 'register_route' );
 
 	}
 
