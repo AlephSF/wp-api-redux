@@ -9,8 +9,8 @@
  * @link       http://alephsf.com
  * @since      1.0.0
  *
- * @package    Wp_Api_Redux
- * @subpackage Wp_Api_Redux/includes
+ * @package    Wp_Api_Redux_Data
+ * @subpackage Wp_Api_Redux_Data/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Wp_Api_Redux
- * @subpackage Wp_Api_Redux/includes
+ * @package    Wp_Api_Redux_Data
+ * @subpackage Wp_Api_Redux_Data/includes
  * @author     Aleph <ping@alephsf.com>
  */
-class Wp_Api_Redux_i18n {
+class Wp_Api_Redux_Data_i18n {
 
 
 	/**
@@ -35,7 +35,7 @@ class Wp_Api_Redux_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'wp-api-redux',
+			'wp-api-redux-data',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

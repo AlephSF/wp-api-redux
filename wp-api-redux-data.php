@@ -10,10 +10,10 @@
  *
  * @link              http://alephsf.com
  * @since             1.0.0
- * @package           Wp_Api_Redux
+ * @package           Wp_Api_Redux_Data
  *
  * @wordpress-plugin
- * Plugin Name:       WordPress API Redux
+ * Plugin Name:       WordPress API Redux Data
  * Plugin URI:        http://alephsf.com
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
  * Version:           1.0.0
@@ -21,7 +21,7 @@
  * Author URI:        http://alephsf.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       wp-api-redux
+ * Text Domain:       wp-api-redux-data
  * Domain Path:       /languages
  */
 
@@ -32,30 +32,30 @@ if ( ! defined( 'WPINC' ) ) {
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-wp-api-redux-activator.php
+ * This action is documented in includes/class-wp-api-redux-data-activator.php
  */
-function activate_wp_api_redux() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-api-redux-activator.php';
-	Wp_Api_Redux_Activator::activate();
+function activate_Wp_Api_Redux_Data() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-api-redux-data-activator.php';
+	Wp_Api_Redux_Data_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-wp-api-redux-deactivator.php
+ * This action is documented in includes/class-wp-api-redux-data-deactivator.php
  */
-function deactivate_wp_api_redux() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-api-redux-deactivator.php';
-	Wp_Api_Redux_Deactivator::deactivate();
+function deactivate_Wp_Api_Redux_Data() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-api-redux-data-deactivator.php';
+	Wp_Api_Redux_Data_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_wp_api_redux' );
-register_deactivation_hook( __FILE__, 'deactivate_wp_api_redux' );
+register_activation_hook( __FILE__, 'activate_Wp_Api_Redux_Data' );
+register_deactivation_hook( __FILE__, 'deactivate_Wp_Api_Redux_Data' );
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-wp-api-redux.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-wp-api-redux-data.php';
 
 /**
  * Begins execution of the plugin.
@@ -69,18 +69,18 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-wp-api-redux.php';
  * @since    1.0.0
  */
 
-add_action('plugins_loaded', 'run_wp_api_redux');
+add_action('plugins_loaded', 'run_Wp_Api_Redux_Data');
 
-function run_wp_api_redux() {
+function run_Wp_Api_Redux_Data() {
   if ( class_exists('WP_REST_Controller') ) {
-		$plugin = new Wp_Api_Redux();
+		$plugin = new Wp_Api_Redux_Data();
 		$plugin->run();
 	} else {
-    add_action('admin_notices', 'wp_api_redux_not_loaded');
+    add_action('admin_notices', 'Wp_Api_Redux_Data_not_loaded');
   }
 }
 
-function wp_api_redux_not_loaded() {
+function Wp_Api_Redux_Data_not_loaded() {
     printf(
       '<div class="error"><p>%s</p></div>',
       __('WordPress API Redux cannot load because the REST API is not currently active.')

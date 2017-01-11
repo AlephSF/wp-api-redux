@@ -6,8 +6,8 @@
  * @link       http://alephsf.com
  * @since      1.0.0
  *
- * @package    Wp_Api_Redux
- * @subpackage Wp_Api_Redux/includes
+ * @package    Wp_Api_Redux_Data
+ * @subpackage Wp_Api_Redux_Data/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Wp_Api_Redux
- * @subpackage Wp_Api_Redux/includes
+ * @package    Wp_Api_Redux_Data
+ * @subpackage Wp_Api_Redux_Data/includes
  * @author     Aleph <ping@alephsf.com>
  */
-class Wp_Api_Redux_Loader {
+class Wp_Api_Redux_Data_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

@@ -6,8 +6,8 @@
  * @link       http://alephsf.com
  * @since      1.0.0
  *
- * @package    Wp_Api_Redux
- * @subpackage Wp_Api_Redux/includes
+ * @package    Wp_Api_Redux_Data
+ * @subpackage Wp_Api_Redux_Data/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Wp_Api_Redux
- * @subpackage Wp_Api_Redux/includes
+ * @package    Wp_Api_Redux_Data
+ * @subpackage Wp_Api_Redux_Data/includes
  * @author     Aleph <ping@alephsf.com>
  */
-class Wp_Api_Redux_Deactivator {
+class Wp_Api_Redux_Data_Deactivator {
 
 	/**
 	 * Short Description. (use period)

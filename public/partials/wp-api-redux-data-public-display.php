@@ -8,8 +8,8 @@
  * @link       http://alephsf.com
  * @since      1.0.0
  *
- * @package    Wp_Api_Redux
- * @subpackage Wp_Api_Redux/public/partials
+ * @package    Wp_Api_Redux_Data
+ * @subpackage Wp_Api_Redux_Data/public/partials
  */
 ?>
 

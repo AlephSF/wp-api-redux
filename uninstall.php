@@ -22,7 +22,7 @@
  * @link       http://alephsf.com
  * @since      1.0.0
  *
- * @package    Wp_Api_Redux
+ * @package    Wp_Api_Redux_Data
  */
 
 // If uninstall not called from WordPress, then exit.

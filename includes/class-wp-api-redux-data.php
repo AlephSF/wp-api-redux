@@ -9,8 +9,8 @@
  * @link       http://alephsf.com
  * @since      1.0.0
  *
- * @package    Wp_Api_Redux
- * @subpackage Wp_Api_Redux/includes
+ * @package    Wp_Api_Redux_Data
+ * @subpackage Wp_Api_Redux_Data/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Wp_Api_Redux
- * @subpackage Wp_Api_Redux/includes
+ * @package    Wp_Api_Redux_Data
+ * @subpackage Wp_Api_Redux_Data/includes
  * @author     Aleph <ping@alephsf.com>
  */
-class Wp_Api_Redux {
+class Wp_Api_Redux_Data {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Wp_Api_Redux {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Wp_Api_Redux_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Wp_Api_Redux_Data_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -68,7 +68,7 @@ class Wp_Api_Redux {
 	 */
 	public function __construct() {
 
-		$this->plugin_name = 'wp-api-redux';
+		$this->plugin_name = 'wp-api-redux-data';
 		$this->version = '1.0.0';
 
 		$this->load_dependencies();
@@ -83,10 +83,10 @@ class Wp_Api_Redux {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Wp_Api_Redux_Loader. Orchestrates the hooks of the plugin.
-	 * - Wp_Api_Redux_i18n. Defines internationalization functionality.
-	 * - Wp_Api_Redux_Admin. Defines all hooks for the admin area.
-	 * - Wp_Api_Redux_Public. Defines all hooks for the public side of the site.
+	 * - Wp_Api_Redux_Data_Loader. Orchestrates the hooks of the plugin.
+	 * - Wp_Api_Redux_Data_i18n. Defines internationalization functionality.
+	 * - Wp_Api_Redux_Data_Admin. Defines all hooks for the admin area.
+	 * - Wp_Api_Redux_Data_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -100,33 +100,33 @@ class Wp_Api_Redux {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-api-redux-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-api-redux-data-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-api-redux-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-api-redux-data-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-api-redux-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-api-redux-data-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp-api-redux-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp-api-redux-data-public.php';
 
-		$this->loader = new Wp_Api_Redux_Loader();
+		$this->loader = new Wp_Api_Redux_Data_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Wp_Api_Redux_i18n class in order to set the domain and to register the hook
+	 * Uses the Wp_Api_Redux_Data_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -134,7 +134,7 @@ class Wp_Api_Redux {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Wp_Api_Redux_i18n();
+		$plugin_i18n = new Wp_Api_Redux_Data_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -149,7 +149,7 @@ class Wp_Api_Redux {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Wp_Api_Redux_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Wp_Api_Redux_Data_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -165,7 +165,7 @@ class Wp_Api_Redux {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Wp_Api_Redux_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Wp_Api_Redux_Data_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -196,7 +196,7 @@ class Wp_Api_Redux {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Wp_Api_Redux_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Wp_Api_Redux_Data_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;
