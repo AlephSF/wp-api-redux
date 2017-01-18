@@ -31,11 +31,16 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
+ * Helpful constants
+ */
+define( 'WP_REDUX_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+
+/**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-wp-api-redux-data-activator.php
  */
 function activate_Wp_Api_Redux_Data() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-api-redux-data-activator.php';
+	require_once WP_REDUX_PLUGIN_PATH . 'includes/class-wp-api-redux-data-activator.php';
 	Wp_Api_Redux_Data_Activator::activate();
 }
 
@@ -44,7 +49,7 @@ function activate_Wp_Api_Redux_Data() {
  * This action is documented in includes/class-wp-api-redux-data-deactivator.php
  */
 function deactivate_Wp_Api_Redux_Data() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-api-redux-data-deactivator.php';
+	require_once WP_REDUX_PLUGIN_PATH . 'includes/class-wp-api-redux-data-deactivator.php';
 	Wp_Api_Redux_Data_Deactivator::deactivate();
 }
 
@@ -55,7 +60,7 @@ register_deactivation_hook( __FILE__, 'deactivate_Wp_Api_Redux_Data' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-wp-api-redux-data.php';
+require WP_REDUX_PLUGIN_PATH . 'includes/class-wp-api-redux-data.php';
 
 /**
  * Begins execution of the plugin.

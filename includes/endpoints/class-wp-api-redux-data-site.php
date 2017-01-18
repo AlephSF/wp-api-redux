@@ -41,6 +41,7 @@ class Wp_Api_Redux_Data_Site extends WP_REST_Controller {
 		 $output = array(
 			 'name' => get_bloginfo('name'),
 			 'tagline' => get_bloginfo('description'),
+			 'siteUrl' => get_home_url(),
 			 'menus' => $this->get_all_menus()
 		 );
 		 return new WP_REST_Response( $output, 200 );
