@@ -1,0 +1,12 @@
+{
+    "name": "alephsf/wp-api-redux-data",
+    "description": "A plugin to extend the WordPress API for use in Redux-driven websites and applications.",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Matt Glaser",
+            "email": "matt@alephsf.com"
+        }
+    ],
+    "require": {}
+}
