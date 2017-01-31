@@ -55,31 +55,35 @@ class Wp_Api_Redux_Data_Site extends WP_REST_Controller {
 		 		$menus[$slug] = array(
 					'menu_name' => $location
 				);
-        $menu_items_raw = wp_get_nav_menu_items($loc_index[$slug]);
-				$menu_items = array();
-				foreach ($menu_items_raw as $key => $item) {
+				if( array_key_exists($slug, $loc_index) ){
+	        $menu_items_raw = wp_get_nav_menu_items($loc_index[$slug]);
+					$menu_items = array();
+					foreach ($menu_items_raw as $key => $item) {
 
-					$url = parse_url($item->url);
-					// get slug
-					if( strpos( $item->url, get_home_url() ) !== false ) {
-						$route = untrailingslashit( $url['path'] );
-					} else {
-						$route = false;
+						$url = parse_url($item->url);
+						// get slug
+						if( strpos( $item->url, get_home_url() ) !== false ) {
+							$route = untrailingslashit( $url['path'] );
+						} else {
+							$route = false;
+						}
+						$menu_items[$key] = array(
+							'id' => $item->ID,
+							'menu_item_parent' => $item->menu_item_parent,
+							'type' => $item->object,
+							'url' => $item->url,
+							'route' => $route,
+							'title' => $item->title,
+							'target' => $item->target,
+							'attr_title' => $item->attr_title,
+							'description' => $item->description,
+							'classes' => $item->classes
+						);
 					}
-					$menu_items[$key] = array(
-						'id' => $item->ID,
-						'menu_item_parent' => $item->menu_item_parent,
-						'type' => $item->object,
-						'url' => $item->url,
-						'route' => $route,
-						'title' => $item->title,
-						'target' => $item->target,
-						'attr_title' => $item->attr_title,
-						'description' => $item->description,
-						'classes' => $item->classes
-					);
+					$menus[$slug]['menu_items'] = $menu_items;
+				} else {
+					$menus[$slug]['menu_items'] = array();
 				}
-				$menus[$slug]['menu_items'] = $menu_items;
 		 }
 
 		 return $menus;
